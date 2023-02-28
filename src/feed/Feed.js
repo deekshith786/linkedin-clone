@@ -9,7 +9,13 @@ import CalendarViewDayIcon from '@mui/icons-material/CalendarViewDay';
 import Post from '../post/Post';
 import { db } from '../config/firebase';
 import firebase from 'firebase/compat/app';
-import { doc, onSnapshot, collection, query, where, onSnapshot } from "firebase/firestore";
+// import { doc, onSnapshot, collection, query, where } from "firebase/firestore";
+
+// import { doc, getDoc } from "firebase/firestore";
+
+// import firebase from 'firebase';
+import { collection, query, where, onSnapshot } from "firebase/firestore";
+
 
 
 function Feed() {
@@ -18,16 +24,65 @@ function Feed() {
 
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-        db.collection("posts").onSnapShot((snapshot) => (
-            setPosts(snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    data: doc.data(),
-                }))
-            )
-        )
-        );
-    }, []);
+    // useEffect(() => {
+    //     const q = query(collection(db, "buddies"))
+    //     const unsub = onSnapshot(q, (querySnapshot) => {
+    //       console.log("Data", querySnapshot.docs.map(d => doc.data()));
+    //     });
+    //   }, [])
+
+    //   useEffect(() => {
+    //     const q = query(collection(db, "posts"))
+    //     const unsub = onSnapshot(q, (querySnapshot) => {
+    //       console.log("Data", querySnapshot.docs.map(d => doc.data()));
+    //     });
+    //   }, [])
+
+    // db.collection("cities").where("state", "==", "CA")
+    // .onSnapshot((querySnapshot) => {
+    //     var cities = [];
+    //     querySnapshot.forEach((doc) => {
+    //         cities.push(doc.data().name);
+    //     });
+    //     console.log("Current cities in CA: ", cities.join(", "));
+    // });
+
+
+    // const q = query(collection(db, "cities"), where("state", "==", "CA"));
+    // const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    //   const cities = [];
+    //   querySnapshot.forEach((doc) => {
+    //       cities.push(doc.data().name);
+    //   });
+    //   console.log("Current cities in CA: ", cities.join(", "));
+    // });
+
+    const q = query(collection(db, "posts"));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        
+
+    const cities = [];
+    querySnapshot.forEach((doc) => {
+        // setPosts(doc.map((item) => ({
+        //     id: item.id,
+        //     data: item.data(),
+        // })))
+            console.log("Current cities in CA: ", doc.data());
+
+    });
+    // console.log("Current cities in CA: ", posts);
+    });
+
+    // useEffect(() => {
+    //     db.collection("posts").onSnapShot((snapshot) => (
+    //         setPosts(snapshot.docs.map((doc) => ({
+    //                 id: doc.id,
+    //                 data: doc.data(),
+    //             }))
+    //         )
+    //     )
+    //     );
+    // }, []);
 
     const sendPost = (e) => {
       /**to prevent refresh when click enter */
@@ -40,6 +95,7 @@ function Feed() {
         photoUrl: "",
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       });
+      setInput("");
     };
 
   return (
