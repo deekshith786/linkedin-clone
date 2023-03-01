@@ -4,7 +4,8 @@ import React from 'react'
 import InputOption from '../inputOption/InputOption'
 import '../post/Post.css'
 
-function Post({ name, description, message, photoUrl }) {
+function Post(props) {
+  const { name, description, message, photoUrl } = props
   return (
     <div className='post'>
       <div className="post__header">
