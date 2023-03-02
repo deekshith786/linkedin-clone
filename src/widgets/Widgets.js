@@ -20,7 +20,7 @@ function Widgets() {
   return (
     <div className='widgets'>
         <div className="widgets__header">
-            <h2>widgets</h2>
+            <h2>LinkedIn News</h2>
             <Info/>
         </div>
         {newsArticle("Double-digit hikes on the cards", "Top news= 9090 readers")}

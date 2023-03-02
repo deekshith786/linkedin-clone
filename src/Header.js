@@ -14,6 +14,8 @@ import { auth } from "./config/firebase";
 function Header() {
 
   const dispach = useDispatch();
+  const user = useSelector(selectUser);
+
 
   const logoutOfApp = () => {
     dispach(logout())
@@ -41,7 +43,7 @@ function Header() {
         <HeaderOption Icon={SmsIcon} title="Messages" />
         <HeaderOption Icon={NotificationsIcon} title="Notifications" />
         <HeaderOption
-          title="me"
+          title="Me"
           onClick={logoutOfApp}
           avatar={true} 
         />
