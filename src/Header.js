@@ -40,8 +40,10 @@ function Header() {
         <Link to="/">
           <a><HeaderOption Icon={HomeIcon} title="Home" /></a>
         </Link >
-        <a><HeaderOption Icon={GroupIcon} title="Network" /></a>
         <Link to="/network">
+        <a><HeaderOption Icon={GroupIcon} title="Network" /></a>
+        </Link>
+        <Link to="/">
           <a><HeaderOption Icon={BusinessCenterIcon} title="Jobs" /></a>
         </Link>
         <Link to="/">
