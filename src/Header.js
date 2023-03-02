@@ -10,17 +10,17 @@ import SmsIcon from "@mui/icons-material/Sms";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "./features/userSlice";
 import { auth } from "./config/firebase";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 function Header() {
-
   const dispach = useDispatch();
   const user = useSelector(selectUser);
 
-
   const logoutOfApp = () => {
-    dispach(logout())
+    dispach(logout());
     auth.signOut();
-  }
+  };
 
   return (
     <div className="header">
@@ -37,16 +37,21 @@ function Header() {
       </div>
 
       <div className="header__right">
-        <HeaderOption Icon={HomeIcon} title="Home" />
-        <HeaderOption Icon={GroupIcon} title="Network" />
-        <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
-        <HeaderOption Icon={SmsIcon} title="Messages" />
-        <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-        <HeaderOption
-          title="Me"
-          onClick={logoutOfApp}
-          avatar={true} 
-        />
+        <Link to="/">
+          <a><HeaderOption Icon={HomeIcon} title="Home" /></a>
+        </Link >
+        <a><HeaderOption Icon={GroupIcon} title="Network" /></a>
+        <Link to="/network">
+          <a><HeaderOption Icon={BusinessCenterIcon} title="Jobs" /></a>
+        </Link>
+        <Link to="/">
+          <a><HeaderOption Icon={SmsIcon} title="Messages" /></a>
+        </Link>
+        <Link to="/">
+          <a><HeaderOption Icon={NotificationsIcon} title="Notifications" /></a>
+        </Link>
+
+        <HeaderOption title="Me" onClick={logoutOfApp} avatar={true} />
       </div>
     </div>
   );
