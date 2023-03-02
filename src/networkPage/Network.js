@@ -8,6 +8,7 @@ import Sidebar from "../sidebar/Sidebar";
 import Widgets from "../widgets/Widgets";
 import { auth } from "../config/firebase";
 import { login, logout, selectUser } from "../features/userSlice";
+import NetworkSidebar from "../network/NetworkSidebar";
 
 function Network() {
 
@@ -15,7 +16,22 @@ function Network() {
 
     const dispach = useDispatch();
   
-
+    useEffect(() => {
+      auth.onAuthStateChanged((userAuth) => {
+        if (userAuth) {
+          dispach(
+            login({
+              email: userAuth.email,
+              uid: userAuth.uid,
+              displayName: userAuth.displayName,
+              photoUrl: userAuth.photoURL,
+            })
+          );
+        } else {
+          dispach(logout());
+        }
+      });
+    }, []);
   
     return (
       <div className="app">
@@ -25,9 +41,8 @@ function Network() {
           <Login />
         ) : (
           <div className="app__body">
-            <Sidebar />
+            <NetworkSidebar />
             <Feed />
-            <Widgets />
           </div>
         )}
       </div>
