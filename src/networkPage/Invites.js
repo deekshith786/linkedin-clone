@@ -1,13 +1,5 @@
-import {
-  ChatOutlined,
-  SendOutlined,
-  ShareOutlined,
-  ThumbUpAltOutlined,
-} from "@mui/icons-material";
 import { Avatar, Box, Button, Typography } from "@mui/material";
-import { padding } from "@mui/system";
 import React, { forwardRef } from "react";
-import InputOption from "../inputOption/InputOption";
 import "../post/Post.css";
 
 const Invites = forwardRef(({ name, description, message, photoUrl }, ref) => {

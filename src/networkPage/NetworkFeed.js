@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "../feed/Feed.css";
-import CreateIcon from "@mui/icons-material/Create";
-import InputOption from "../inputOption/InputOption";
-import ImageIcon from "@mui/icons-material/Image";
-import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
-import EventNoteIcon from "@mui/icons-material/EventNote";
-import CalendarViewDayIcon from "@mui/icons-material/CalendarViewDay";
-import Post from "../post/Post";
 import { db } from "../config/firebase";
 import firebase from "firebase/compat/app";
 import {
@@ -21,12 +14,16 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import FlipMove from "react-flip-move";
 import "../networkPage/NetworkFeed.css";
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Button, Divider, Typography } from "@mui/material";
 import Invites from "./Invites";
 import "../sidebar/Sidebar.css";
 import CardGrid from "../card/CardGrid";
 import Card from "../card/Card";
 import { Box } from "@mui/system";
+import Post from "../post/Post";
+
+
+const names = ['Deekshith', 'Jayanth', "Vibhav", "Sameer", "Satish", "Gangadhar", "Rahul", "Praveen", "Krishna", "Uday"]
 
 function NetworkFeed() {
   const user = useSelector(selectUser);
@@ -93,7 +90,7 @@ function NetworkFeed() {
             People you may know from ABC | Part of XYZ
           </Typography>
           <CardGrid>
-            {Array(6)
+            {Array(10)
               .fill()
               .map((_, i) => (
                 <Card key={i} sx={{ display: "block" }}>
@@ -104,12 +101,27 @@ function NetworkFeed() {
                     width="100px"
                     height="100px"
                   />
+                  <Typography sx={{paddingBottom:1}}>{names[i]}</Typography>
+                  <Button variant="contained" sx={{borderRadius:10}}>Connect</Button>
                 </Card>
               ))}
           </CardGrid>
-
         </div>
       </div>
+          <FlipMove>
+            <Divider sx={{ paddingBottom: 2 }} />
+            {posts.map((item, i) => {
+              return (
+                <Post
+                  key={i}
+                  name={item.name}
+                  description={item.description}
+                  message={item.message}
+                  photoUrl={item.photoUrl}
+                />
+              );
+            })}
+          </FlipMove>
     </div>
   );
 }
