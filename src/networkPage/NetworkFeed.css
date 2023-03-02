@@ -1,0 +1,72 @@
+.networkfeed {
+    flex: 0.7;
+    margin: 0 20px;
+}
+
+.networkfeed__inputContainer {
+
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.networkfeed__input {
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    display: flex;
+    padding: 10px;
+    color: gray;
+    padding-left: 15px;
+}
+
+.networkfeed__input > form {
+    display: flex;
+    width: 100%;
+}
+
+.networkfeed__input > form > input {
+    border: none;
+    flex: 1;
+    margin-left: 10px;
+    outline-width: 0;
+    font-weight: 600;
+}
+
+.networkfeed__input > form > button {
+    display: none;
+}
+
+.networkfeed__inputOptions {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.network__invitations {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid lightgray
+}
+
+.network__invitations > .MuiButton-root {
+    color: gray !important;
+    background-color: whitesmoke;
+}
+
+.network__invitations > h3 > h4{
+    font-weight: 100;
+}
+
+.network__celebrations {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.network__celebrations > p {
+    font-weight: lighter;
+}

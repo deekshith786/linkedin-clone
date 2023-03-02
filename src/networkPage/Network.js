@@ -9,6 +9,7 @@ import Widgets from "../widgets/Widgets";
 import { auth } from "../config/firebase";
 import { login, logout, selectUser } from "../features/userSlice";
 import NetworkSidebar from "../network/NetworkSidebar";
+import NetworkFeed from "./NetworkFeed";
 
 function Network() {
 
@@ -42,7 +43,7 @@ function Network() {
         ) : (
           <div className="app__body">
             <NetworkSidebar />
-            <Feed />
+            <NetworkFeed />
           </div>
         )}
       </div>

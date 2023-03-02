@@ -31,3 +31,13 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.invites__info {
+    justify-content: space-between;
+}
+
+.invites__header {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: space-between;
+}
