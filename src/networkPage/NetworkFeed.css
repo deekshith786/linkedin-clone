@@ -1,5 +1,5 @@
 .networkfeed {
-    flex: 0.7;
+    flex: 0.8;
     margin: 0 20px;
 }
 
@@ -69,4 +69,10 @@
 
 .network__celebrations > p {
     font-weight: lighter;
+}
+
+.people__image{
+    padding: 10px;
+    border-radius: 50% !important;
+
 }

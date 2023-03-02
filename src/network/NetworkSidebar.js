@@ -50,7 +50,7 @@ function NetworkSidebar() {
         <div className="networksidebar__stat">
           <div className="networksidebar__icons">
             <PersonIcon />
-            <p>Following & follwers</p>
+            <p>Following</p>
           </div>
           <p className="networksidebar__statNumber">{random()}</p>
         </div>

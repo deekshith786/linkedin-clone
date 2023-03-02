@@ -1,0 +1,22 @@
+  
+.card {
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    width: 150px;
+    text-align: center;
+    display: block;
+    border: 1px solid lightgray;
+  }
+  
+.cardGrid {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, 150px);
+    justify-content: space-evenly;
+  }
+  

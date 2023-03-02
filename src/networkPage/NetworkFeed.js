@@ -21,8 +21,12 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import FlipMove from "react-flip-move";
 import "../networkPage/NetworkFeed.css";
-import { Button } from "@mui/material";
+import { Avatar, Button, Typography } from "@mui/material";
 import Invites from "./Invites";
+import "../sidebar/Sidebar.css";
+import CardGrid from "../card/CardGrid";
+import Card from "../card/Card";
+import { Box } from "@mui/system";
 
 function NetworkFeed() {
   const user = useSelector(selectUser);
@@ -80,29 +84,32 @@ function NetworkFeed() {
           <h3>Celebrations</h3>
           <h4>See All</h4>
         </div>
-          <p>Job changes, Birthdays, Work anniversaries</p>
+        <p>Job changes, Birthdays, Work anniversaries</p>
       </div>
 
       <div className="networkfeed__inputContainer">
         <div className="network__people">
-          <h3>People you may know from ABC | Part of XYZ</h3>
+          <Typography sx={{ paddingBottom: 3 }}>
+            People you may know from ABC | Part of XYZ
+          </Typography>
+          <CardGrid>
+            {Array(6)
+              .fill()
+              .map((_, i) => (
+                <Card key={i} sx={{ display: "block" }}>
+                  <img
+                    className="people__image"
+                    src="https://contentstatic.techgig.com/photo/87644309/Believe-It-Naruto-is-coming-to-Fortnite-this-November.jpg"
+                    alt=""
+                    width="100px"
+                    height="100px"
+                  />
+                </Card>
+              ))}
+          </CardGrid>
+
         </div>
       </div>
-
-
-      <FlipMove>
-        {posts.map((item, i) => {
-          return (
-            <Post
-              key={i}
-              name={item.name}
-              description={item.description}
-              message={item.message}
-              photoUrl={item.photoUrl}
-            />
-          );
-        })}
-      </FlipMove>
     </div>
   );
 }
