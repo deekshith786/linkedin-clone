@@ -14,6 +14,11 @@ function Sidebar() {
     </div>
   );
 
+  const min = 1;
+  const max = 500;
+  const random1 = Math.floor(Math.random() * (max - min + 1)) + min;
+  const random2 = Math.floor(Math.random() * (max - min + 1)) + min;
+
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -31,13 +36,13 @@ function Sidebar() {
       <div className="sidebar__stats">
         <div className="sidebar__stat">
           <p>Who viewed you</p>
-          <p className="sidebar__statNumber">5,432</p>
+          <p className="sidebar__statNumber">{random1}</p>
         </div>
         <div className="sidebar__stat">
           <p>Views on post</p>
-          <p className="sidebar__statNumber">2,142</p>
+          <p className="sidebar__statNumber">{random2}</p>
         </div>
-      </div>
+      </div>      
       <div className="sidebar__bottom">
         <p>Recent</p>
         {recentItem("reactjs")}
