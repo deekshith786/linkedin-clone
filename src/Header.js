@@ -49,7 +49,7 @@ function Header() {
         <Link to="/">
           <a><HeaderOption Icon={SmsIcon} title="Messages" /></a>
         </Link>
-        <Link to="/">
+        <Link to="/notifications">
           <a><HeaderOption Icon={NotificationsIcon} title="Notifications" /></a>
         </Link>
 
