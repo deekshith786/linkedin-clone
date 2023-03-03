@@ -5,6 +5,7 @@ import firebase from "firebase/compat/app";
 import {
   collection,
   query,
+  where,
   onSnapshot,
   orderBy,
 } from "firebase/firestore";
@@ -32,34 +33,42 @@ const names = [
 ];
 
 function JobsFeed() {
-  const user = useSelector(selectUser);
-  const [input, setInput] = useState("");
-  const [posts, setPosts] = useState([]);
+  // const user = useSelector(selectUser);
+  // const [input, setInput] = useState("");
+  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     let cities = [];
-    const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+    const q = query(collection(db, "jobs"));
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         cities.push(doc.data());
       });
-      setPosts(cities);
+      console.log("orinting the jobs", cities);
+      setJobs(cities);
     });
-  }, [posts]);
+  }, []);
 
-  const sendPost = (e) => {
-    /**to prevent refresh when click enter */
-    e.preventDefault();
+  // const sendPost = (e) => {
+  //   /**to prevent refresh when click enter */
+  //   e.preventDefault();
 
-    db.collection("posts").add({
-      name: user.displayName,
-      description: user.email,
-      message: input,
-      photoUrl: user.photoUrl || "",
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    setInput("");
-  };
+  //   db.collection("jobs").add({
+  //     name: user.displayName,
+  //     description: user.email,
+  //     message: input,
+  //     photoUrl: user.photoUrl || "",
+  //     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  //   });
+  //   setInput("");
+  // };
+
+  // "company"=  "Amazon"
+  // "img"=  "https://media.licdn.com/dms/image/C560BAQHTvZwCx4p2Qg/company-logo_100_100/0/1612205615891?e=1686182400&v=beta&t=Vh06CPtEBo_HZsRB5mbYOvqnoLcQmpggC_CxBLFnk3I"
+  // "jobType"=  "Suggested"
+  // "location"=  "Hyderabad, Telangana, India"
+  // "recruting"=  "Actively recruting"
+  // "title"=  "AWS Developer"
 
   return (
     <div className="networkfeed">
@@ -68,13 +77,13 @@ function JobsFeed() {
           <h3>Recent job searches</h3>
           <Typography sx={{ fontWeight: "light" }}>clear</Typography>
         </div>
-        <b>Software Engineer · 437 new</b>
-        <Typography sx={{ fontWeight: "light", fontSize: "small" }}>
+        <b>Software Engineer · <span style={{color:'green', fontSize:'12px'}}>437 new</span>  </b>
+        <Typography sx={{ fontWeight: "light", fontSize: "12px", color:'gray' }}>
           Alert On · Hyderabad, Telangana, India · On-site · Hybrid
         </Typography>
         <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
-        <b>Software Engineer · 437 new</b>
-        <Typography sx={{ fontWeight: "light", fontSize: "small" }}>
+        <b>Software Engineer · <span style={{color:'green', fontSize:'12px'}}>120 new</span></b>
+        <Typography sx={{ fontWeight: "light", fontSize: "12px", color:'gray' }}>
           Alert On · Hyderabad, Telangana, India · On-site · Hybrid
         </Typography>
         {/* <Divider sx={{margin:2, marginBottom:2}}/> */}
@@ -95,75 +104,68 @@ function JobsFeed() {
           </Typography>
         </Box>
 
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box sx={{ display: "flex" }}>
-            <img
-              src="https://media.licdn.com/dms/image/C4E0BAQHJUDZhWnP4MA/company-logo_100_100/0/1654088523608?e=1686182400&v=beta&t=1IZ1DNruuGcRWXYKDMN5zaHUvLEFz17zujfe2emfg8E"
-              alt=""
-              width={50}
-              height={50}
-            />
-            <Box>
-              <Typography
-                sx={{ paddingLeft: 2, fontWeight: "bold", color: "#0a66c2" }}
-              >
-                Senior Java Developer
-              </Typography>
-              <Typography sx={{ paddingLeft: 2, fontSize: 13 }}>
-                EPAM Anywhere
-              </Typography>
-              <Typography
-                sx={{
-                  paddingLeft: 2,
-                  fontSize: 13,
-                  fontWeight: "light",
-                  color: "grey",
-                }}
-              >
-                Hyderabad, Telangana, India
-              </Typography>
-              <Typography
-                sx={{
-                  paddingLeft: 2,
-                  fontSize: 13,
-                  fontWeight: "light",
-                  color: "grey",
-                }}
-              >
-                Actively Recruting
-              </Typography>
-              <Typography
-                sx={{
-                  paddingLeft: 2,
-                  fontSize: 13,
-                  fontWeight: "light",
-                  color: "grey",
-                }}
-              >
-                Promoted
-              </Typography>
-            </Box>
-          </Box>
-          <BookmarkBorderIcon sx={{ paddingLeft: 2, color: "grey" }} />
-        </Box>
-
-        <Divider sx={{ marginTop: 2, marginBottom: 2 }} />
-      </div>
-
-      <FlipMove>
-        <Divider sx={{ paddingBottom: 2 }} />
-        {posts.map((item, i) => {
+        {jobs.map((item, i) => {
           return (
-            <Post
-              key={i}
-              name={item.name}
-              description={item.description}
-              message={item.message}
-              photoUrl={item.photoUrl}
-            />
+            <Box sx={{ display: "flex", justifyContent: "space-between", borderBottom: '1px solid lightgrey', paddingBottom:3, paddingTop:3}}>
+              <Box sx={{ display: "flex"}}>
+                <img
+                  src={item.img}
+                  alt=""
+                  width={50}
+                  height={50}
+                />
+                <Box>
+                  <Typography
+                    sx={{
+                      paddingLeft: 2,
+                      fontWeight: "bold",
+                      color: "#0a66c2",
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography sx={{ paddingLeft: 2, fontSize: 13 }}>
+                    {item.company}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      paddingLeft: 2,
+                      fontSize: 13,
+                      fontWeight: "light",
+                      color: "grey",
+                    }}
+                  >
+                    {item.location}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      paddingLeft: 2,
+                      fontSize: 13,
+                      fontWeight: "light",
+                      color: "grey",
+                    }}
+                  >
+                    {item.recruting}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      paddingLeft: 2,
+                      fontSize: 13,
+                      fontWeight: "light",
+                      color: "grey",
+                    }}
+                  >
+                    {item.jobType}
+                  </Typography>
+                </Box>
+              </Box>
+              <BookmarkBorderIcon sx={{ paddingLeft: 2, color: "grey" }} />
+            </Box>
           );
         })}
-      </FlipMove>
+
+      </div>
+
     </div>
   );
 }

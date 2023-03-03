@@ -28,24 +28,26 @@ const names = ['Deekshith', 'Jayanth', "Vibhav", "Sameer", "Satish", "Gangadhar"
 function NetworkFeed() {
   const user = useSelector(selectUser);
   const [input, setInput] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [people, setPeople] = useState([]);
+  const message = people.designation;
 
   useEffect(() => {
     let cities = [];
-    const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+    const q = query(collection(db, "network_People"));
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         cities.push(doc.data());
       });
-      setPosts(cities);
+      setPeople(cities);
     });
-  }, [posts]);
+  }, [people]);
 
+  // console.log(people);
   const sendPost = (e) => {
     /**to prevent refresh when click enter */
     e.preventDefault();
 
-    db.collection("posts").add({
+    db.collection("people").add({
       name: user.displayName,
       description: user.email,
       message: input,
@@ -63,14 +65,14 @@ function NetworkFeed() {
           <Button variant="outlined">Manage</Button>
         </div>
         <div className="network__people">
-          {posts.map((item, i) => {
+          {people.map((item, i) => {
             return (
               <Invites
                 key={i}
                 name={item.name}
-                description={item.description}
+                description={item.designation}
                 message={item.message}
-                photoUrl={item.photoUrl}
+                photoUrl={item.img}
               />
             );
           })}
@@ -90,38 +92,23 @@ function NetworkFeed() {
             People you may know from ABC | Part of XYZ
           </Typography>
           <CardGrid>
-            {Array(10)
-              .fill()
-              .map((_, i) => (
+            {people.map((item, i) => (
                 <Card key={i} sx={{ display: "block" }}>
                   <img
                     className="people__image"
-                    src="https://contentstatic.techgig.com/photo/87644309/Believe-It-Naruto-is-coming-to-Fortnite-this-November.jpg"
+                    src={item.img}
                     alt=""
-                    width="100px"
-                    height="100px"
+                    width="75px"
+                    height="75px"
                   />
-                  <Typography sx={{paddingBottom:1}}>{names[i]}</Typography>
+                  <Typography sx={{paddingBottom:1, fontWeight:'bold'}}>{item.name}</Typography>
+                  <Typography sx={{paddingBottom:1, fontSize:14, color:'gray'}}>{item.designation}</Typography>
                   <Button variant="contained" sx={{borderRadius:10}}>Connect</Button>
                 </Card>
               ))}
           </CardGrid>
         </div>
       </div>
-          <FlipMove>
-            <Divider sx={{ paddingBottom: 2 }} />
-            {posts.map((item, i) => {
-              return (
-                <Post
-                  key={i}
-                  name={item.name}
-                  description={item.description}
-                  message={item.message}
-                  photoUrl={item.photoUrl}
-                />
-              );
-            })}
-          </FlipMove>
     </div>
   );
 }

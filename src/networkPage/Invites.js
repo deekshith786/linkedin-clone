@@ -11,7 +11,7 @@ const Invites = forwardRef(({ name, description, message, photoUrl }, ref) => {
           <div className="invites__info">
             <Box>
               <h2>{name}</h2>
-              <p>{description}</p>
+              <Typography sx={{fontSize:'small'}}>{description}</Typography>
             </Box>
           </div>
         </Box>

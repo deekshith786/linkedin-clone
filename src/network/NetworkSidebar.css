@@ -84,10 +84,18 @@
 
 }
 .networksidebar__stats > h3{
-    font-weight: 150;
-    margin-right: 150px;
+    font-weight: bold;
+    /* margin-right: 125px; */
     margin-bottom: 15px;
 }
+
+.networksidebar__stats > h3:hover {
+    /* font-weight: bold; */
+    /* margin-right: 125px; */
+    /* margin-bottom: 15px; */
+    color: black !important;
+}
+
 
 .networksidebar__statNumber {
     font-weight: bold;
