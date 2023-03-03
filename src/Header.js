@@ -43,7 +43,7 @@ function Header() {
         <Link to="/network">
         <a><HeaderOption Icon={GroupIcon} title="Network" /></a>
         </Link>
-        <Link to="/">
+        <Link to="/jobs">
           <a><HeaderOption Icon={BusinessCenterIcon} title="Jobs" /></a>
         </Link>
         <Link to="/">
