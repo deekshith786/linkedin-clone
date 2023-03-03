@@ -30,24 +30,24 @@ const names = ['Deekshith', 'Jayanth', "Vibhav", "Sameer", "Satish", "Gangadhar"
 function Notifications() {
   const user = useSelector(selectUser);
   const [input, setInput] = useState("");
-  const [posts, setPosts] = useState([]);
+  const [people, setPeople] = useState([]);
 
   useEffect(() => {
     let cities = [];
-    const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
+    const q = query(collection(db, "network_People"));
     onSnapshot(q, (querySnapshot) => {
       querySnapshot.forEach((doc) => {
         cities.push(doc.data());
       });
-      setPosts(cities);
+      setPeople(cities);
     });
-  }, [posts]);
+  }, [people]);
 
   const sendPost = (e) => {
     /**to prevent refresh when click enter */
     e.preventDefault();
 
-    db.collection("posts").add({
+    db.collection("people").add({
       name: user.displayName,
       description: user.email,
       message: input,
@@ -65,14 +65,14 @@ function Notifications() {
           <Button variant="outlined">Manage</Button> */}
         {/* </div> */}
         <div className="network__people">
-          {posts.map((item, i) => {
+          {people.map((item, i) => {
             return (
               <NotificationItem
                 key={i}
                 name={item.name}
-                description={item.description}
-                message={item.message}
-                photoUrl={item.photoUrl}
+                description={item.notification}
+                message={item.notification}
+                photoUrl={item.img}
               />
             );
           })}
