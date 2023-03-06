@@ -34,7 +34,7 @@
     height: 50px;
     font-size: large;
     color: #fff;
-    background-color: #0074b1;
+    background-color: #0074b1 !important;
     border-radius: 5px;
 }
 

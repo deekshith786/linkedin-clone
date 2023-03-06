@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { auth } from "../config/firebase";
@@ -112,7 +112,7 @@ function Login() {
           <Box className="login" sx={{ placeItems: "start", paddingTop: 2 }}>
             <form>
               {/* <label>UserName</label> */}
-              <input
+              <TextField sx={{size:'small', paddingBottom:2}}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Full name (required if registering)"
@@ -120,7 +120,7 @@ function Login() {
                 name=""
                 id=""
               />
-              <input
+              <TextField sx={{size:'small', paddingBottom:2}}
                 value={profilePic}
                 onChange={(e) => setProfilePic(e.target.value)}
                 placeholder="Profile pic URL (optional)"
@@ -128,7 +128,7 @@ function Login() {
                 name=""
                 id=""
               />
-              <input
+              <TextField sx={{size:'small', paddingBottom:2}}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
@@ -136,7 +136,7 @@ function Login() {
                 name=""
                 id=""
               />
-              <input
+              <TextField sx={{size:'small', paddingBottom:2}}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
@@ -144,16 +144,16 @@ function Login() {
                 name=""
                 id=""
               />
-              <button type="submit" onClick={loginToApp}>
+              <Button type="submit" color="primary" onClick={loginToApp}>
                 Sign In
-              </button>
+              </Button>
             </form>
 
             <p>
               Not a member?{" "}
-              <span className="login__register" onClick={register}>
+              <Button className="login__register" onClick={register}>
                 Register Now
-              </span>
+              </Button>
             </p>
           </Box>
         </Box>
