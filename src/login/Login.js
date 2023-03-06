@@ -16,14 +16,19 @@ function Login() {
   const loginToApp = (e) => {
     e.preventDefault();
 
-    auth.signInWithEmailAndPassword(email, password).then((userAuth) => {
-        dispatch(login({
-             email: userAuth.user.email,
-             uid: userAuth.user.uid,
-             displayName: userAuth.user.displayName,
-             profileUrl: userAuth.user.photoURL,
-        }))
-    }).catch(error => alert(error ));
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+            profileUrl: userAuth.user.photoURL,
+          })
+        );
+      })
+      .catch((error) => alert(error));
   };
 
   const register = () => {
@@ -72,12 +77,13 @@ function Login() {
         </Box>
 
         <Box sx={{ display: "flex" }}>
-          <Typography sx={{ padding: 2, fontWeight: "bold" }}>
+          <Button sx={{ padding: 2, fontWeight: "bold" }}  onClick={register}>
             {" "}
             Join now
-          </Typography>
+          </Button>
           <Button
             variant="outlined"
+            onClick={loginToApp}
             sx={{ borderRadius: "100px", fontWeight: "bold" }}
           >
             Sign in
@@ -92,7 +98,7 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <Box sx={{ padding: "80px", alignSelf: "flex-start", paddingTop:3 }}>
+        <Box sx={{ padding: "80px", alignSelf: "flex-start", paddingTop: 3 }}>
           <Typography
             sx={{
               fontWeight: 100,
@@ -106,13 +112,11 @@ function Login() {
             Welcome to your professional community
           </Typography>
 
-
-          
-
           <Box className="login" sx={{ placeItems: "start", paddingTop: 2 }}>
             <form>
               {/* <label>UserName</label> */}
-              <TextField sx={{size:'small', paddingBottom:2}}
+              <TextField
+                sx={{ size: "small", paddingBottom: 2 }}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Full name (required if registering)"
@@ -120,7 +124,8 @@ function Login() {
                 name=""
                 id=""
               />
-              <TextField sx={{size:'small', paddingBottom:2}}
+              <TextField
+                sx={{ size: "small", paddingBottom: 2 }}
                 value={profilePic}
                 onChange={(e) => setProfilePic(e.target.value)}
                 placeholder="Profile pic URL (optional)"
@@ -128,7 +133,8 @@ function Login() {
                 name=""
                 id=""
               />
-              <TextField sx={{size:'small', paddingBottom:2}}
+              <TextField
+                sx={{ size: "small", paddingBottom: 2 }}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
@@ -136,7 +142,8 @@ function Login() {
                 name=""
                 id=""
               />
-              <TextField sx={{size:'small', paddingBottom:2}}
+              <TextField
+                sx={{ size: "small", paddingBottom: 2 }}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"

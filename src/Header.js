@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "./features/userSlice";
 import { auth } from "./config/firebase";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 function Header() {
   const dispach = useDispatch();
@@ -23,49 +23,53 @@ function Header() {
   };
 
   return (
-    <div className="header">
-      <div className="header__left">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-          alt=""
-        />
+    <>
+      {user && (
+        <div className="header">
+          <div className="header__left">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+              alt=""
+            />
 
-        <div className="header__search">
-          <SearchIcon />
-          <input placeholder="Search" type="text" />
+            <div className="header__search">
+              <SearchIcon />
+              <input placeholder="Search" type="text" />
+            </div>
+          </div>
+
+          <div className="header__right">
+            <Link to="/">
+              <a>
+                <HeaderOption Icon={HomeIcon} title="Home" />
+              </a>
+            </Link>
+            <Link to="/network">
+              <a>
+                <HeaderOption Icon={GroupIcon} title="Network" />
+              </a>
+            </Link>
+            <Link to="/jobs">
+              <a>
+                <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
+              </a>
+            </Link>
+            <Link to="/notifications">
+              <a>
+                <HeaderOption Icon={SmsIcon} title="Messages" />
+              </a>
+            </Link>
+            <Link to="/notifications">
+              <a>
+                <HeaderOption Icon={NotificationsIcon} title="Notifications" />
+              </a>
+            </Link>
+
+            <HeaderOption title="Me" onClick={logoutOfApp} avatar={true} />
+          </div>
         </div>
-      </div>
-
-      <div className="header__right">
-        <Link to="/">
-          <a>
-            <HeaderOption Icon={HomeIcon} title="Home" />
-          </a>
-        </Link>
-        <Link to="/network">
-          <a>
-            <HeaderOption Icon={GroupIcon} title="Network" />
-          </a>
-        </Link>
-        <Link to="/jobs">
-          <a>
-            <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
-          </a>
-        </Link>
-        <Link to="/notifications">
-          <a>
-            <HeaderOption Icon={SmsIcon} title="Messages" />
-          </a>
-        </Link>
-        <Link to="/notifications">
-          <a>
-            <HeaderOption Icon={NotificationsIcon} title="Notifications" />
-          </a>
-        </Link>
-
-        <HeaderOption title="Me" onClick={logoutOfApp} avatar={true} />
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 
