@@ -111,11 +111,11 @@ function Login() {
 
           <Box className="login" sx={{ placeItems: "start", paddingTop: 2 }}>
             <form>
-              <label>Email</label>
+              {/* <label>UserName</label> */}
               <input
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Full name (required if registering"
+                placeholder="Full name (required if registering)"
                 type="text"
                 name=""
                 id=""

@@ -38,19 +38,29 @@ function Header() {
 
       <div className="header__right">
         <Link to="/">
-          <a><HeaderOption Icon={HomeIcon} title="Home" /></a>
-        </Link >
+          <a>
+            <HeaderOption Icon={HomeIcon} title="Home" />
+          </a>
+        </Link>
         <Link to="/network">
-        <a><HeaderOption Icon={GroupIcon} title="Network" /></a>
+          <a>
+            <HeaderOption Icon={GroupIcon} title="Network" />
+          </a>
         </Link>
         <Link to="/jobs">
-          <a><HeaderOption Icon={BusinessCenterIcon} title="Jobs" /></a>
+          <a>
+            <HeaderOption Icon={BusinessCenterIcon} title="Jobs" />
+          </a>
         </Link>
         <Link to="/notifications">
-          <a><HeaderOption Icon={SmsIcon} title="Messages" /></a>
+          <a>
+            <HeaderOption Icon={SmsIcon} title="Messages" />
+          </a>
         </Link>
         <Link to="/notifications">
-          <a><HeaderOption Icon={NotificationsIcon} title="Notifications" /></a>
+          <a>
+            <HeaderOption Icon={NotificationsIcon} title="Notifications" />
+          </a>
         </Link>
 
         <HeaderOption title="Me" onClick={logoutOfApp} avatar={true} />
