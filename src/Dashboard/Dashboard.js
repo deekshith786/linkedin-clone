@@ -1,12 +1,11 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
+import logo from "../images/login-hero.svg";
 import { useDispatch } from "react-redux";
 import { auth } from "../config/firebase";
 import { login } from "../features/userSlice";
-import logo from "../images/login-hero.svg";
-import "../login/Login.css";
 
-function Login() {
+function Dashboard() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -16,14 +15,19 @@ function Login() {
   const loginToApp = (e) => {
     e.preventDefault();
 
-    auth.signInWithEmailAndPassword(email, password).then((userAuth) => {
-        dispatch(login({
-             email: userAuth.user.email,
-             uid: userAuth.user.uid,
-             displayName: userAuth.user.displayName,
-             profileUrl: userAuth.user.photoURL,
-        }))
-    }).catch(error => alert(error ));
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        dispatch(
+          login({
+            email: userAuth.user.email,
+            uid: userAuth.user.uid,
+            displayName: userAuth.user.displayName,
+            profileUrl: userAuth.user.photoURL,
+          })
+        );
+      })
+      .catch((error) => alert(error));
   };
 
   const register = () => {
@@ -92,7 +96,7 @@ function Login() {
           alignItems: "center",
         }}
       >
-        <Box sx={{ padding: "80px", alignSelf: "flex-start", paddingTop:3 }}>
+        <Box sx={{ padding: "80px", alignSelf: "flex-start" }}>
           <Typography
             sx={{
               fontWeight: 100,
@@ -163,4 +167,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Dashboard;
